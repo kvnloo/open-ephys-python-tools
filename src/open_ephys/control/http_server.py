@@ -104,12 +104,15 @@ class OpenEphysHTTPServer:
         except requests.exceptions.Timeout:
             # Maybe set up for a retry, or continue in a retry loop
             print("Timeout")
+            raise
         except requests.exceptions.TooManyRedirects:
             # Tell the user their URL was bad and try a different one
             print("Bad URL")
+            raise
         except requests.exceptions.RequestException as e:
             # Open Ephys server needs to be enabled
             print("Open Ephys HTTP Server likely not enabled")
+            raise
 
         return resp.json()
 
@@ -290,7 +293,7 @@ class OpenEphysHTTPServer:
         Parameters
         ----------
         device_name : String
-            The audio device name.
+            The device name.
         """
 
         payload = {
