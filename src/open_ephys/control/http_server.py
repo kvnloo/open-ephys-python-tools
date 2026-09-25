@@ -293,7 +293,7 @@ class OpenEphysHTTPServer:
         Parameters
         ----------
         device_name : String
-            The device name.
+            The audio device name.
         """
 
         payload = {
